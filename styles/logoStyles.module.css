@@ -1,0 +1,20 @@
+/* sharedStyles.module.css */
+
+.container {
+    display: flex; /* Correspondiente a 'flex' */
+    justify-content: center; /* Correspondiente a 'justify-center' */
+    margin-top: 1.25rem; /* Correspondiente a 'mt-5', donde 5 * 0.25rem = 1.25rem */
+  }
+  
+  .relative {
+    position: relative; /* Correspondiente a 'relative' */
+  }
+  
+  .w40 {
+    width: 10rem; /* Correspondiente a 'w-40', donde 40 * 0.25rem = 10rem */
+  }
+  
+  .h40 {
+    height: 10rem; /* Correspondiente a 'h-40', donde 40 * 0.25rem = 10rem */
+  }
+  

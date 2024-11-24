@@ -1,0 +1,54 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./styles/logoStyles.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+/* sharedStyles.module.css */
+
+.logoStyles_container__kfNOd {
+    display: flex; /* Correspondiente a 'flex' */
+    justify-content: center; /* Correspondiente a 'justify-center' */
+    margin-top: 1.25rem; /* Correspondiente a 'mt-5', donde 5 * 0.25rem = 1.25rem */
+  }
+  
+  .logoStyles_relative__5SVaD {
+    position: relative; /* Correspondiente a 'relative' */
+  }
+  
+  .logoStyles_w40__aCRsO {
+    width: 10rem; /* Correspondiente a 'w-40', donde 40 * 0.25rem = 10rem */
+  }
+  
+  .logoStyles_h40__4NBN0 {
+    height: 10rem; /* Correspondiente a 'h-40', donde 40 * 0.25rem = 10rem */
+  }
+  
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./styles/layoutStyles.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+/* sharedStyles.module.css */
+
+/* Clase para padding */
+.layoutStyles_p_5__TtZHv {
+    padding: 1.25rem; /* 5 * 0.25rem = 1.25rem */
+  }
+  
+  /* Estilos para pantallas medianas y superiores */
+  @media (min-width: 768px) {
+    .layoutStyles_flex_1__xz_YQ {
+      flex: 1 1; /* Equivale a 'flex-1' en Tailwind CSS */
+    }
+  
+    .layoutStyles_h_screen__TvPgR {
+      height: 100vh; /* Altura completa de la ventana de visualización */
+    }
+  
+    .layoutStyles_overflow_y_scroll__YstcU {
+      overflow-y: scroll; /* Habilita el scroll vertical */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .layoutStyles_flex_md__KA_54 {
+      display: flex; /* Equivalente a 'md:flex' en Tailwind CSS */
+    }
+  }
+  

@@ -1,0 +1,80 @@
+/* /app/login/Login.module.css */
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #f0f4f8; /* Color de fondo suave */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    color: #333;
+    margin-bottom: 20px;
+  }
+.error{
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; /* Máxima anchura del formulario */
+    background-color: #fff; /* Color de fondo blanco */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .inputField {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .inputField:focus {
+    border-color: #0070f3; /* Color del borde al enfocar */
+    outline: none; /* Quitar el contorno por defecto */
+  }
+  
+  .loginButton {
+    padding: 10px;
+    background-color: #0070f3; /* Color del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave al cambiar el color */
+  }
+  
+  .loginButton:hover {
+    background-color: #005bb5; /* Color del botón al pasar el mouse */
+  }
+  
+  /* Estilos Responsivos */
+  @media (max-width: 600px) {
+    .loginContainer {
+      padding: 10px;
+    }
+  
+    .loginForm {
+      padding: 20px;
+    }
+  
+    .inputField {
+      font-size: 14px; /* Tamaño de fuente más pequeño en dispositivos móviles */
+    }
+  
+    .loginButton {
+      font-size: 14px; /* Tamaño de fuente más pequeño en dispositivos móviles */
+    }
+  }
+  

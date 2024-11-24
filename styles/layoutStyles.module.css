@@ -1,0 +1,28 @@
+/* sharedStyles.module.css */
+
+/* Clase para padding */
+.p_5 {
+    padding: 1.25rem; /* 5 * 0.25rem = 1.25rem */
+  }
+  
+  /* Estilos para pantallas medianas y superiores */
+  @media (min-width: 768px) {
+    .flex_1 {
+      flex: 1; /* Equivale a 'flex-1' en Tailwind CSS */
+    }
+  
+    .h_screen {
+      height: 100vh; /* Altura completa de la ventana de visualización */
+    }
+  
+    .overflow_y_scroll {
+      overflow-y: scroll; /* Habilita el scroll vertical */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .flex_md {
+      display: flex; /* Equivalente a 'md:flex' en Tailwind CSS */
+    }
+  }
+  

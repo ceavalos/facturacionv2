@@ -1,0 +1,70 @@
+/* sharedStyles.module.css */
+
+/* Clase para márgenes superiores */
+.mt10 {
+    margin-top: 2.5rem; /* 10 * 0.25rem = 2.5rem */
+  }
+  
+  .mt5 {
+    margin-top: 1.25rem; /* 5 * 0.25rem = 2.5rem */
+  }
+  
+
+  /* Clase para fondo blanco */
+  .bgwhite {
+    background-color: cornsilk; /* Color blanco */
+  }
+  
+  /* Clase para pantallas medianas y superiores */
+  @media (min-width: 768px) {
+    .w72 {
+      width: 18rem; /* 72 * 0.25rem = 18rem */
+    }
+  
+    .hscreen {
+      height: 100vh; /* Altura completa de la ventana de visualización */
+    }
+  }
+  
+  .overflow_y_scroll {
+    overflow-y: scroll; /* Habilita el scroll vertical */
+  }
+
+  .hscreen {
+    height: 100vh; /* Altura completa de la ventana de visualización */
+  }
+  /* Clase para padding */
+.p5 {
+    padding: 1.25rem; /* 5 * 0.25rem = 1.25rem */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-left: 0rem;
+  }
+  .title {
+    font-size: 1.5rem;
+    color:white;
+    margin-bottom: 1rem;
+  }
+  
+  .bgWhite {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    color: rebeccapurple;
+    margin-left: 0rem;
+  }
+  
+  .listItem {
+    color: rebeccapurple;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
