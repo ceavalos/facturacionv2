@@ -18,7 +18,7 @@ export default function Sidebar2() {
         className="p-button-primary"
       />
 
-      <Sidebar visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
+      <Sidebar visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false) }>
         <Logo />
       
         <h2>Menu</h2>

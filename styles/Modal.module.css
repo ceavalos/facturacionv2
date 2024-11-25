@@ -1,0 +1,46 @@
+.company_form {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna */
+    gap: 1rem; /* Espaciado entre los elementos */
+  }
+  
+  .form_group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form_input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;    
+    width: 100%; /* Usa todo el ancho del contenedor */
+  }
+  
+  .dialog_content {
+    padding: 1.5rem; /* Agrega espacio interno en la modal */
+  }
+
+.btn_new{
+ margin-bottom: 1rem;
+}  
+
+.btn_save_cancel{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    gap: 1rem; /* Espaciado entre los botones */
+    width: 100%; /* Usa todo el ancho del contenedor */
+    flex-direction: column;
+}
+
+
+.title{
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  display: flex;
+  width: 100%; /* Usa todo el ancho del contenedor */
+  flex-direction: column;
+  font-size: 30px;
+  color: white;
+  font-weight:bold;
+ }  
+ 

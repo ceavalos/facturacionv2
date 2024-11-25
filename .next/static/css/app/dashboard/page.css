@@ -1,73 +1,49 @@
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./styles/sideBarStyles.module.css ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/* sharedStyles.module.css */
-
-/* Clase para márgenes superiores */
-.sideBarStyles_mt10__bwSWL {
-    margin-top: 2.5rem; /* 10 * 0.25rem = 2.5rem */
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./styles/Modal.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.Modal_company_form___y_lx {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna */
+    gap: 1rem; /* Espaciado entre los elementos */
   }
   
-  .sideBarStyles_mt5__aoPu6 {
-    margin-top: 1.25rem; /* 5 * 0.25rem = 2.5rem */
-  }
-  
-
-  /* Clase para fondo blanco */
-  .sideBarStyles_bgwhite__2Loy6 {
-    background-color: cornsilk; /* Color blanco */
-  }
-  
-  /* Clase para pantallas medianas y superiores */
-  @media (min-width: 768px) {
-    .sideBarStyles_w72__jsr9L {
-      width: 18rem; /* 72 * 0.25rem = 18rem */
-    }
-  
-    .sideBarStyles_hscreen__3GB1_ {
-      height: 100vh; /* Altura completa de la ventana de visualización */
-    }
-  }
-  
-  .sideBarStyles_overflow_y_scroll__H23zG {
-    overflow-y: scroll; /* Habilita el scroll vertical */
-  }
-
-  .sideBarStyles_hscreen__3GB1_ {
-    height: 100vh; /* Altura completa de la ventana de visualización */
-  }
-  /* Clase para padding */
-.sideBarStyles_p5__o2yU6 {
-    padding: 1.25rem; /* 5 * 0.25rem = 1.25rem */
-  }
-  
-  .sideBarStyles_container__gWe_O {
+  .Modal_form_group__4Yn58 {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
-    margin-left: 0rem;
-  }
-  .sideBarStyles_title__cf_eV {
-    font-size: 1.5rem;
-    color:white;
-    margin-bottom: 1rem;
   }
   
-  .sideBarStyles_bgWhite__JIPR5 {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    color: rebeccapurple;
-    margin-left: 0rem;
+  .Modal_form_input__K9CcL {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;    
+    width: 100%; /* Usa todo el ancho del contenedor */
   }
   
-  .sideBarStyles_listItem__nlR8o {
-    color: rebeccapurple;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+  .Modal_dialog_content__F_6px {
+    padding: 1.5rem; /* Agrega espacio interno en la modal */
   }
+
+.Modal_btn_new__Acxys{
+ margin-bottom: 1rem;
+}  
+
+.Modal_btn_save_cancel__L6sPC{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    gap: 1rem; /* Espaciado entre los botones */
+    width: 100%; /* Usa todo el ancho del contenedor */
+    flex-direction: column;
+}
+
+
+.Modal_title__haUON{
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  display: flex;
+  width: 100%; /* Usa todo el ancho del contenedor */
+  flex-direction: column;
+  font-size: 30px;
+  color: white;
+  font-weight:bold;
+ }  
+ 
