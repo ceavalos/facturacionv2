@@ -1,4 +1,4 @@
-// File: /home/ceavalos/Desktop/Desarrollo/NextJs/facturacionv2.0/app/layout.tsx
+// File: /home/ceavalos/Desktop/Desarrollo/NextJs/example-next-auth-v5/facturacionv2.0/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

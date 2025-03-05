@@ -69,28 +69,53 @@ export default function CompanySumary() {
   ];
 
   // Guardar los cambios
-  const saveChanges = () => {
-    if (selectedCompany) {
-      // setCompanies((prevCompanies) =>
-      //   prevCompanies.map((comp) =>
-      //     comp._id === selectedCompany._id ? selectedCompany : comp
-      //   )
-      // );
+  const saveChanges = async () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('No token found');
+    router.push("/login");
+    return;
+  }
 
-      if (isEditMode) {
-        /*setCompanies((prevCompanies) =>
-         prevCompanies.map((c) => (c._id === company._id ? company : c))         
-       );*/
-      } else {
-        /*setCompanies((prevCompanies) => [
-          ...prevCompanies,
-          { ...company, _id: prevCompanies.length + 1 },
-        ]);*/
-      }
+  try {
+    const url = `/dashboard/companies/api`; // URL de la API
+    const method = isEditMode ? 'PUT' : 'POST';
+    
+    // console.log("Method:", method);
+    // console.log("URL:", url);
+    // console.log("Company Data:", selectedCompany);
+   
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedCompany), // Enviar los datos en JSON
+    });
 
+    if (!response.ok) {
+      throw new Error(`Failed to ${isEditMode ? 'update' : 'create'} company`);
     }
+
+    const updatedCompany = await response.json();
+    console.log("API Response:", updatedCompany);
+
+    setCompanies((prevCompanies) => {
+      if (isEditMode) {
+        return prevCompanies.map((comp) =>
+          comp._id === selectedCompany._id ? updatedCompany.company : comp
+        );
+      } else {
+        return [...prevCompanies, updatedCompany.company];
+      }
+    });
+
     setEditDialogVisible(false);
-  };
+  } catch (error) {
+    console.error('Error saving company:', error);
+  }
+};
 
   // Renderizar el botón de editar
   const actionBodyTemplate = (rowData: CompanyProps) => {
@@ -225,7 +250,7 @@ export default function CompanySumary() {
                   value={selectedCompany.active}
                   options={activeOptions}
                   onChange={(e) => setSelectedCompany({ ...selectedCompany, active: e.target.value })}
-                  placeholder="Seleccione un estado"
+                  placeholder="select a state"
                 />
               </div>
 
@@ -235,7 +260,7 @@ export default function CompanySumary() {
                   label="Guardar"
                   icon="pi pi-check"
                   className="p-button-success"
-                //onClick={saveCompany}
+                onClick={saveChanges}
                 />
                 <Button
                   label="Cancelar"

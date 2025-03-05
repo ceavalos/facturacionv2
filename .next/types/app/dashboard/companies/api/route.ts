@@ -1,4 +1,4 @@
-// File: /home/ceavalos/Desktop/Desarrollo/NextJs/facturacionv2.0/app/dashboard/companies/api/route.ts
+// File: /home/ceavalos/Desktop/Desarrollo/NextJs/example-next-auth-v5/facturacionv2.0/app/dashboard/companies/api/route.ts
 import * as entry from '../../../../../../app/dashboard/companies/api/route.js'
 import type { NextRequest } from 'next/server.js'
 
