@@ -33,6 +33,11 @@ export default function Sidebar2() {
               Mantenimiento Compañías
             </a>
           </li>
+          <li>
+            <a href="/dashboard/economicactivities" style={{ textDecoration: 'none', color: '#007ad9' }}>
+              Catalogo Actividades Economicas
+            </a>
+          </li>
         </ul>
 
       </Sidebar>

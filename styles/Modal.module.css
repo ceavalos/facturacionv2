@@ -16,6 +16,12 @@
     width: 100%; /* Usa todo el ancho del contenedor */
   }
   
+  .error {
+    color: red; /* Texto rojo */
+    font-weight: bold; /* Opcional: Hace el texto más visible */
+    margin-top: 5px; /* Espacio arriba */
+  }
+  
   .dialog_content {
     padding: 1.5rem; /* Agrega espacio interno en la modal */
   }
@@ -32,6 +38,12 @@
     flex-direction: column;
 }
 
+.headerButtons {
+  display: flex;
+  align-items: center;  /* Alinea los elementos verticalmente */
+  gap: 10px;  /* Espaciado entre los botones */
+  margin-bottom: 1rem;
+}
 
 .title{
   justify-content: center; /* Centrar horizontalmente */

@@ -42,13 +42,14 @@ export default function CompanySumary() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [headerTitle, setheaderTitle] = useState('')
   const [title, setTitle] = useState('Maintenance of Companies')
-
+  const [error, setError] = useState('');
   //
   const router = useRouter();
 
   // Abrir modal para crear o editar
   const openDialog = (companyToEdit: CompanyProps | null = null) => {
     setIsEditMode(!!companyToEdit);
+    setError('');
     //
     console.log(!!companyToEdit)
     if (!!companyToEdit) {
@@ -71,8 +72,10 @@ export default function CompanySumary() {
   // Guardar los cambios
   const saveChanges = async () => {
   const token = localStorage.getItem('token');
+  setError('');
   if (!token) {
     console.error('No token found');
+    setError('No token found');
     router.push("/login");
     return;
   }
@@ -104,7 +107,8 @@ export default function CompanySumary() {
     setCompanies((prevCompanies) => {
       if (isEditMode) {
         return prevCompanies.map((comp) =>
-          comp._id === selectedCompany._id ? updatedCompany.company : comp
+          comp._id === selectedCompany._id ? 
+            updatedCompany.company : comp
         );
       } else {
         return [...prevCompanies, updatedCompany.company];
@@ -113,6 +117,7 @@ export default function CompanySumary() {
 
     setEditDialogVisible(false);
   } catch (error) {
+    setError('Error saving company:'+ error);
     console.error('Error saving company:', error);
   }
 };
@@ -132,6 +137,7 @@ export default function CompanySumary() {
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('No token found');
+      setError('No token found');
       router.push("/login")
       return;
     }
@@ -147,6 +153,7 @@ export default function CompanySumary() {
 
       if (!response.ok) {
         throw new Error('Failed to fetch companies');
+        setError('Failed to fetch companies');
         router.push("/login")
       }
 
@@ -154,6 +161,7 @@ export default function CompanySumary() {
       setCompanies(data);
     } catch (error) {
       console.error('Error fetching companies:', error);
+      setError('Error fetching companies:'+ error);
       router.push("/login")
     }
   };
@@ -254,8 +262,10 @@ export default function CompanySumary() {
                 />
               </div>
 
-
-              <div className={styles.btn_save_cancel}>
+              <div>
+                {error && <p className={styles.error}>{error}</p>}
+              </div>
+              <div  className={styles.btn_save_cancel}>
                 <Button
                   label="Guardar"
                   icon="pi pi-check"

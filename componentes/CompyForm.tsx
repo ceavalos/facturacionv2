@@ -14,7 +14,7 @@ export default function CompanyForm( ) {
     address: '',
     phone: '',
   });
-
+    const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -48,7 +48,7 @@ export default function CompanyForm( ) {
       if (!res.ok) {
         throw new Error(data.error || 'Failed to create company');
       }
-
+      console.log(message);
       setMessage('Company created successfully');
       setCompany({
         companyCode: '',
@@ -116,6 +116,7 @@ export default function CompanyForm( ) {
             value={company.phone}
             onChange={handleChange}
           />
+            {error && <p className={styles.error}>{error}</p>}
           <button type="submit" className={styles.button}>Create Company</button>
         </form>        
         {message && <p className={styles.error}>{message}</p>}

@@ -1,4 +1,11 @@
 {
-  "/not-found": "app/not-found.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/login/page": "app/login/page.js",
+  "/login/api/route": "app/login/api/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/companies/page": "app/dashboard/companies/page.js",
+  "/dashboard/users/page": "app/dashboard/users/page.js",
+  "/dashboard/economicactivities/page": "app/dashboard/economicactivities/page.js",
+  "/dashboard/companies/api/route": "app/dashboard/companies/api/route.js",
+  "/dashboard/users/api/route": "app/dashboard/users/api/route.js",
+  "/dashboard/economicactivities/api/route": "app/dashboard/economicactivities/api/route.js"
 }

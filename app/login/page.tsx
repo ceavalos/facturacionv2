@@ -32,6 +32,7 @@ const LoginPage = () => {
         setError(data.message );
         throw new Error(data.message || 'Error en la autenticación');
       }
+      console.log(data)
 
       // Guarda el token JWT en localStorage
       localStorage.setItem('token', data.token);
