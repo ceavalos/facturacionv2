@@ -58,4 +58,28 @@
   color: white;
   font-weight:bold;
  }  
- 
+
+.Modal_logout_container__U0ddM {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.Modal_user_info__fnjer {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.Modal_info_item__0gB4V {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.Modal_info_item__0gB4V:last-child {
+  margin-bottom: 0;
+}

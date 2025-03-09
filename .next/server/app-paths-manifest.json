@@ -2,10 +2,14 @@
   "/login/page": "app/login/page.js",
   "/login/api/route": "app/login/api/route.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/companies/page": "app/dashboard/companies/page.js",
+  "/dashboard/products/page": "app/dashboard/products/page.js",
   "/dashboard/users/page": "app/dashboard/users/page.js",
+  "/dashboard/categories/page": "app/dashboard/categories/page.js",
   "/dashboard/economicactivities/page": "app/dashboard/economicactivities/page.js",
+  "/dashboard/companies/page": "app/dashboard/companies/page.js",
   "/dashboard/companies/api/route": "app/dashboard/companies/api/route.js",
   "/dashboard/users/api/route": "app/dashboard/users/api/route.js",
+  "/dashboard/products/api/route": "app/dashboard/products/api/route.js",
+  "/dashboard/categories/api/route": "app/dashboard/categories/api/route.js",
   "/dashboard/economicactivities/api/route": "app/dashboard/economicactivities/api/route.js"
 }

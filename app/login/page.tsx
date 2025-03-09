@@ -27,15 +27,15 @@ const LoginPage = () => {
       });
 
       const data = await res.json();
-      console.log(data)
       if (!res.ok) {
         setError(data.message );
         throw new Error(data.message || 'Error en la autenticación');
       }
-      console.log(data)
 
       // Guarda el token JWT en localStorage
       localStorage.setItem('token', data.token);
+      localStorage.setItem('company', data.company.toString()); // Asegurarse de que sea string
+      localStorage.setItem('username', data.username.toString()); // Asegurarse de que sea string
 
       // Redirige al usuario al dashboard
       router.push('/dashboard');

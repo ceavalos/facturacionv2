@@ -55,4 +55,28 @@
   color: white;
   font-weight:bold;
  }  
- 
+
+.logout_container {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.user_info {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.info_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.info_item:last-child {
+  margin-bottom: 0;
+}

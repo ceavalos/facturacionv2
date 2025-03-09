@@ -79,16 +79,12 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-
-  await dbConnect(); // Conectar a la base de datos
-
-  const { method } = req;
+  await dbConnect();
 
   // Validar token JWT
   const authHeader = req.headers.get('authorization');
   
-  if (!authHeader ) {
-    // return res.status(401).json({ error: 'Authorization header is missing' });
+  if (!authHeader) {
     return NextResponse.json({ error: 'Authorization header is missing' }, { status: 401 });
   }
 
@@ -98,17 +94,31 @@ export async function GET(req: Request) {
   try {
     jwt.verify(token, JWT_SECRET!);
   } catch (error) {
-    // return res.status(401).json({ error: 'Invalid or expired token' });
     return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
   }
-  
-  const companias = await Company.find({});
 
-  //return NextResponse.json({ mensaje: 'Hola Mundo' }, { status: 200 });
-  return NextResponse.json(companias, { status: 200 });
-  
+  try {
+    // Obtener el ID de la URL si existe
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+
+    if (id) {
+      // Si hay ID, buscar una compañía específica
+      const company = await Company.findById(id);
+      if (!company) {
+        return NextResponse.json({ error: 'Company not found' }, { status: 404 });
+      }
+      return NextResponse.json(company, { status: 200 });
+    } else {
+      // Si no hay ID, devolver todas las compañías
+      const companies = await Company.find({});
+      return NextResponse.json(companies, { status: 200 });
+    }
+  } catch (error) {
+    console.error('Error fetching company:', error);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
 }
-
 
 export async function PUT(req: Request) {
   await dbConnect(); // Conectar a la base de datos
@@ -158,4 +168,3 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
-  

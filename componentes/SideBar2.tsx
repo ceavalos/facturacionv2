@@ -1,26 +1,35 @@
 'use client'
 
-import Logo from '../ui/Logo'
+import Image from 'next/image';
 import styles from '../styles/sideBarStyles.module.css';
 import { Sidebar } from 'primereact/sidebar';
 import { useState } from 'react';
 import { Button } from 'primereact/button';
+import Logout from '@/componentes/Logout';
 
 export default function Sidebar2() {
   const [visibleLeft, setVisibleLeft] = useState(true);
 
   return (
     <>
-       <Button
+      <Button
         label="Show Sidebar"
         icon="pi pi-bars"
         onClick={() => setVisibleLeft(true)}
         className="p-button-primary"
       />
 
-      <Sidebar visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false) }>
-        <Logo />
-      
+      <Sidebar visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
+        <div className={styles.logo_container}>
+          <Image
+            src="/logo.jpg"
+            alt="Logo"
+            width={150}
+            height={50}
+            priority
+          />
+        </div>
+        <Logout />
         <h2>Menu</h2>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           <li>
@@ -38,14 +47,18 @@ export default function Sidebar2() {
               Catalogo Actividades Economicas
             </a>
           </li>
+          <li>
+            <a href="/dashboard/categories" style={{ textDecoration: 'none', color: '#007ad9' }}>
+              Categorias productos
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/products" style={{ textDecoration: 'none', color: '#007ad9' }}>
+              Productos
+            </a>
+          </li>
         </ul>
-
       </Sidebar>
-
-
     </>
-
-
-
   )
 }

@@ -1,20 +1,32 @@
 /* sharedStyles.module.css */
 
 .container {
-    display: flex; /* Correspondiente a 'flex' */
-    justify-content: center; /* Correspondiente a 'justify-center' */
-    margin-top: 1.25rem; /* Correspondiente a 'mt-5', donde 5 * 0.25rem = 1.25rem */
-  }
-  
-  .relative {
-    position: relative; /* Correspondiente a 'relative' */
-  }
-  
-  .w40 {
-    width: 10rem; /* Correspondiente a 'w-40', donde 40 * 0.25rem = 10rem */
-  }
-  
-  .h40 {
-    height: 10rem; /* Correspondiente a 'h-40', donde 40 * 0.25rem = 10rem */
-  }
-  
+  padding: 1rem;
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.w40 {
+  width: 40px;
+}
+
+.h40 {
+  height: 40px;
+}
+
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #2563eb;
+  font-weight: bold;
+  margin: 0;
+}

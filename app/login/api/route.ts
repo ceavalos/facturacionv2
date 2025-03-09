@@ -30,7 +30,9 @@ export async function POST(request: Request) {
     { 
       userId: user._id,
       role: user.role,
-      username: user.username
+      username: user.username,
+      company: user.company
+
     }, 
     JWT_SECRET, 
     { expiresIn: '24h' }
@@ -40,6 +42,7 @@ export async function POST(request: Request) {
   return NextResponse.json({ 
     token,
     role: user.role,
+    company: user.company,
     username: user.username
   });
 }
