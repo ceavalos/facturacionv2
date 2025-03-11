@@ -57,6 +57,11 @@ export default function Sidebar2() {
               Productos
             </a>
           </li>
+          <li>
+            <a href="/dashboard/clients" style={{ textDecoration: 'none', color: '#007ad9' }}>
+              Clientes
+            </a>
+          </li>
         </ul>
       </Sidebar>
     </>

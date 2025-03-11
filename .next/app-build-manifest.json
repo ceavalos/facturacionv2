@@ -6,11 +6,29 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/page.css",
+      "static/chunks/app/dashboard/page.js"
+    ],
     "/dashboard/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/dashboard/layout.css",
       "static/chunks/app/dashboard/layout.js"
+    ],
+    "/dashboard/clients/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/clients/page.css",
+      "static/chunks/app/dashboard/clients/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
     ],
     "/dashboard/products/page": [
       "static/chunks/webpack.js",
@@ -24,35 +42,11 @@
       "static/css/app/dashboard/users/page.css",
       "static/chunks/app/dashboard/users/page.js"
     ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/login/page.css",
-      "static/chunks/app/login/page.js"
-    ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/page.css",
-      "static/chunks/app/dashboard/page.js"
-    ],
-    "/dashboard/categories/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/categories/page.css",
-      "static/chunks/app/dashboard/categories/page.js"
-    ],
     "/dashboard/economicactivities/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/dashboard/economicactivities/page.css",
       "static/chunks/app/dashboard/economicactivities/page.js"
-    ],
-    "/dashboard/companies/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/companies/page.css",
-      "static/chunks/app/dashboard/companies/page.js"
     ]
   }
 }
