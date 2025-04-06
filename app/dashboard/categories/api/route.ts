@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { connectToDatabase as dbConnect } from '@/lib/db';
-import Category from '@/models/category';
+import Category from '@/models/Category';
 
 // Función para validar el token JWT
 const validateToken = (req: NextRequest) => {

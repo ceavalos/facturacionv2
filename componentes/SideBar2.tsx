@@ -62,6 +62,11 @@ export default function Sidebar2() {
               Clientes
             </a>
           </li>
+          <li>
+            <a href="/dashboard/facturas" style={{ textDecoration: 'none', color: '#007ad9' }}>
+              Facturas
+            </a>
+          </li>
         </ul>
       </Sidebar>
     </>

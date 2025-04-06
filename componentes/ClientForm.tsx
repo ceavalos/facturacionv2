@@ -11,6 +11,9 @@ import { Dropdown } from 'primereact/dropdown';
 import { AutoComplete } from 'primereact/autocomplete';
 import { useRouter } from 'next/navigation';
 
+import { tipoClienteOptions, tipoFacturacionOptions } from '@/app/types/constantes';
+
+
 type EconomicActivityType = {
   _id: string;
   code: string;
@@ -46,16 +49,6 @@ const clientEmpty: ClientType = {
   companyId: '',
   createdAt: new Date()
 }
-
-const tipoClienteOptions = [
-  { label: 'Persona Natural', value: 'NATURAL' },
-  { label: 'Persona Jurídica', value: 'JURIDICA' }
-];
-
-const tipoFacturacionOptions = [
-  { label: 'Consumidor Final', value: 'CONSUMIDOR_FINAL' },
-  { label: 'Crédito Fiscal', value: 'CREDITO_FISCAL' }
-];
 
 export default function ClientForm() {
   const [clients, setClients] = useState<ClientType[]>([]);
@@ -330,13 +323,14 @@ export default function ClientForm() {
       {error && <div className={styles.error}>{error}</div>}
 
       <DataTable value={clients} tableStyle={{ minWidth: '50rem' }}>
+      <Column field="nombre" header="Nombre" />
         <Column field="tipoCliente" header="Tipo de Cliente" body={(rowData) => 
           rowData.tipoCliente === 'NATURAL' ? 'Persona Natural' : 'Persona Jurídica'
         } />
         <Column field="tipoFacturacion" header="Tipo de Facturación" body={(rowData) =>
           rowData.tipoFacturacion === 'CONSUMIDOR_FINAL' ? 'Consumidor Final' : 'Crédito Fiscal'
         } />
-        <Column field="nombre" header="Nombre" />
+       
         <Column field="correoElectronico" header="Correo Electrónico" />
         <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }} />
       </DataTable>
@@ -353,6 +347,17 @@ export default function ClientForm() {
           {error && <div className={styles.error}>{error}</div>}
           
           <div className={styles.company_form}>
+            
+            <div className={styles.form_group}>
+              <label htmlFor="nombre">Nombre*</label>
+              <InputText
+                id="nombre"
+                value={selectedClient.nombre}
+                onChange={(e) => setSelectedClient({ ...selectedClient, nombre: e.target.value })}
+                className={`${styles.form_input} ${!selectedClient.nombre?.trim() && error ? styles.input_error : ''}`}
+              />
+            </div>
+
             <div className={styles.form_group}>
               <label htmlFor="tipoCliente">Tipo de Cliente</label>
               <Dropdown
@@ -373,17 +378,7 @@ export default function ClientForm() {
                 onChange={(e) => setSelectedClient({ ...selectedClient, tipoFacturacion: e.value })}
                 className={styles.form_input}
               />
-            </div>
-
-            <div className={styles.form_group}>
-              <label htmlFor="nombre">Nombre*</label>
-              <InputText
-                id="nombre"
-                value={selectedClient.nombre}
-                onChange={(e) => setSelectedClient({ ...selectedClient, nombre: e.target.value })}
-                className={`${styles.form_input} ${!selectedClient.nombre?.trim() && error ? styles.input_error : ''}`}
-              />
-            </div>
+            </div>           
 
             <div className={styles.form_group}>
               <label htmlFor="correoElectronico">Correo Electrónico*</label>

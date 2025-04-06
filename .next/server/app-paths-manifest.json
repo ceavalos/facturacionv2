@@ -1,11 +1,10 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/clients/page": "app/dashboard/clients/page.js",
-  "/dashboard/users/page": "app/dashboard/users/page.js",
-  "/dashboard/economicactivities/page": "app/dashboard/economicactivities/page.js",
-  "/dashboard/economicactivities/api/route": "app/dashboard/economicactivities/api/route.js",
+  "/login/api/route": "app/login/api/route.js",
+  "/dashboard/facturas/page": "app/dashboard/facturas/page.js",
   "/dashboard/companies/api/route": "app/dashboard/companies/api/route.js",
-  "/dashboard/clients/api/route": "app/dashboard/clients/api/route.js"
+  "/dashboard/clients/api/route": "app/dashboard/clients/api/route.js",
+  "/dashboard/products/api/route": "app/dashboard/products/api/route.js",
+  "/api/dashboard/products/search/route": "app/api/dashboard/products/search/route.js"
 }
