@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import Company from './Company';
 
 export interface ICategory extends Document {
   company: mongoose.Types.ObjectId;
@@ -32,7 +33,6 @@ const categorySchema = new Schema({
 // Crear un índice compuesto único para company y code
 categorySchema.index({ company: 1, code: 1 }, { unique: true });
 
-//export default mongoose.models.Category || mongoose.model<ICategory>('Category', categorySchema);
-// Add this line to properly export the model
-const Category = mongoose.models.Category || mongoose.model<ICategory>('Category', categorySchema);
+// Al final del archivo Category.ts
+const Category = mongoose.models.Category || mongoose.model('Category', categorySchema);
 export default Category;

@@ -176,3 +176,11 @@
   border-radius: 8px 8px 0 0;
   color: #333;
 }
+
+.headerSection {
+  flex: 0 0 35%; /* Takes exactly 35% of the space */
+}
+
+.detailSection {
+  flex: 1; /* Takes the remaining 65% */
+}

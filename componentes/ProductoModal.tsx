@@ -5,34 +5,40 @@ import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { AutoComplete } from 'primereact/autocomplete';
 import { InputText } from 'primereact/inputtext';
+import { ProductoDetalle as Product,ProductoDetalle } from '@/app/types/ProductoDetalle';
+import { IFacturaDet } from '../models/FacturaDet';
 
 interface ProductoModalProps {
     visible: boolean;
     onHide: () => void;
     onSave: (producto: ProductoDetalle) => void;
     tipoFacturacion: string;
+    initialProducto?: ProductoDetalle; // Add this prop
+    setCurrentProducto: (producto: ProductoDetalle) => void;
+    productos: ProductoDetalle[];
+    setDetalleProductos: (productos: ProductoDetalle[]) => void;
 }
 
-interface ProductoDetalle {
-    category: string;
-    Product: string;
-    cantidad: number;
-    precio_unitario: number;
-    total_gravado: number;
-    total_iva: number;
-}
+// interface Product {
+//     category: {
+//         description?: string;
+//         _id: string;
+//     };
+//     _id: string;
+//     name: string;
+//     price: number;
+// }
 
-interface Product {
-    _id: string;
-    name: string;
-    price: number;
-    Category: {
-        _id: string;
-        name?: string;
-    };
-}
-
-export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion }: ProductoModalProps) {
+export default function ProductoModal(
+    {   visible, 
+        onHide,
+        onSave, 
+        tipoFacturacion, 
+        initialProducto,
+        setCurrentProducto,
+        productos,
+        setDetalleProductos,
+         }: ProductoModalProps) {
     const [searchProduct, setSearchProduct] = useState('');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -59,37 +65,79 @@ export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion
                 setFilteredProducts([]);
                 return;
             }
-
-            /*const response = await fetch(`/api/dashboard/products/search?query=${encodeURIComponent(event.query)}`, {
-                headers: {
-                    'authorization': `Bearer ${token}`, // lowercase
-                    'company': company // lowercase
-                }
-            });
-            */
             const response = await fetch(`/api/dashboard/products/search?query=${encodeURIComponent(event.query)}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Company': company
                 }
-            });            
+            });
             if (!response.ok) throw new Error('Error al buscar productos');
             const data = await response.json();
             console.log('Resultados:', data);
+            console.log(response)
             setFilteredProducts(data);
-            
+
         } catch (error) {
             console.error('Error:', error);
             setFilteredProducts([]);
         }
     };
 
+    useEffect(() => {
+        console.log('selectedProduct actualizado:', selectedProduct);
+    }, [selectedProduct]);
+    
+     // Add this effect to handle initialProducto
+     useEffect(() => {
+        if (initialProducto && visible) {
+            // Set form values based on the product to edit
+            setCantidad(initialProducto.cantidad);
+            setPrecioUnitario(initialProducto.precio_unitario);
+            console.log('initialProducto:', initialProducto);
+            setSelectedProduct(initialProducto);
+            console.log('selectedProduct actualizado:', selectedProduct);
+            setSearchProduct(initialProducto.productName);
+            /* 
+            // If you need to fetch the product details to get the full product object
+            const fetchProductDetails = async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const company = localStorage.getItem('company');
+                    
+                    const response = await fetch(`/dashboard/products/api/${initialProducto.productId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Company': company
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const productData = await response.json();
+                        setSelectedProduct(productData);
+                    }
+                } catch (error) {
+                    console.error('Error fetching product details:', error);
+                }
+            };
+            
+            fetchProductDetails();
+            */
+        } else if (!visible) {
+            // Reset form when modal closes
+            setCantidad(1);
+            setPrecioUnitario(0);
+            setSelectedProduct(null);
+            setSearchProduct('');
+            setFilteredProducts([]);
+        }
+    }, [initialProducto, visible]);
 
     // Manejar la selección de un producto
     const handleProductSelect = (event: { value: Product }) => {
         console.log('Producto seleccionado:', event.value);
         setSelectedProduct(event.value);
         setPrecioUnitario(event.value.price);
+        setCantidad(1);
     };
 
     const calcularTotales = () => {
@@ -103,22 +151,94 @@ export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion
         } else {
             totalGravado = Math.round((subtotal / 1.13) * 100) / 100;
             totalIva = subtotal - totalGravado;
+            //totalGravado=subtotal;
         }
 
         return { totalGravado, totalIva };
     };
 
     const handleSave = () => {
+        if (!selectedProduct) {
+            alert('Por favor seleccione un producto');
+            return;
+        }
+    
+        if (cantidad <= 0) {
+            alert('La cantidad debe ser mayor a 0');
+            return;
+        }
+    
+        // Calculate values based on tipo de facturación
+        const precioUnitarioFinal = precioUnitario;
+        let totalGravado = 0;
+        let totalIva = 0;
+    
+        if (tipoFacturacion === 'CONSUMIDOR_FINAL') {
+            totalGravado = precioUnitarioFinal * cantidad;
+            totalIva = 0;
+        } else {
+            // For other types, calculate with IVA
+            totalGravado = (precioUnitarioFinal * cantidad) / 1.13;
+            totalIva = totalGravado * 0.13;
+        }
+        console.log("initialProducto", initialProducto);
+
+        const productoDetalle: ProductoDetalle = {
+            // If editing (initialProducto exists), use its ID, otherwise generate a new one
+            _id: initialProducto?._id || `temp-${Date.now()}`,
+            category: selectedProduct.category._id,
+            Product: selectedProduct._id,
+            productName: selectedProduct.name||selectedProduct.productName,
+            categoryId: selectedProduct.category._id,
+            categoryDescription: selectedProduct.category.description||selectedProduct.categoryDescription,
+            cantidad: cantidad, 
+            precio_unitario: precioUnitarioFinal,
+            total_gravado: totalGravado,
+            total_iva: totalIva
+        };
+
+        // Create the product object
+        if (initialProducto) {
+            console.log("dentro del update",selectedProduct)
+            const productosActualizados = productos.map(p =>
+                p._id === selectedProduct._id ? productoDetalle : p
+              );
+            console.log("productosActualizados", productosActualizados);
+            setDetalleProductos(productosActualizados);
+        }
+        else{
+            console.log("dentro del create")           
+            onSave(productoDetalle);
+        }
+
+      
+        // Reset form fields
+        setSelectedProduct(null);
+        setCantidad(1);
+        setPrecioUnitario(0);
+        setSearchProduct('');
+        setCurrentProducto(null);
+        
+        // Close the modal
+        onHide();
+    };
+
+/*
+    const handleSave = () => {
         if (!selectedProduct) return;
 
         const { totalGravado, totalIva } = calcularTotales();
+        // console.log("selectedProduct", selectedProduct);
+        // console.log("selectedProduct._id", selectedProduct._id);
         onSave({
-            category: selectedProduct.Category._id,
+            category: selectedProduct.category._id,
             Product: selectedProduct._id,
             cantidad,
             precio_unitario: precioUnitario,
             total_gravado: totalGravado,
-            total_iva: totalIva
+            total_iva: totalIva,
+            productName: selectedProduct.name,
+            categoryDescription: selectedProduct.category.description
         });
 
         // Limpiar el formulario
@@ -128,7 +248,7 @@ export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion
         setPrecioUnitario(0);
         onHide();
     };
-
+*/
     return (
         <Dialog
             header="Agregar Producto"
@@ -154,7 +274,7 @@ export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion
                         dropdown
                         itemTemplate={(item) => (
                             <div>
-                                {item.name} - {item.Category?.name || item.Category?._id || 'N/A'}
+                                {item.name} - {item.Category?.description || item.Category?._id || 'N/A'}
                             </div>
                         )}
                     />
@@ -165,7 +285,8 @@ export default function ProductoModal({ visible, onHide, onSave, tipoFacturacion
                         <div className="p-field">
                             <label>Categoría</label>
                             <InputText
-                                value={selectedProduct.Category?.name || selectedProduct.Category?._id || 'N/A'}
+                                 value={selectedProduct.category?.description || selectedProduct.categoryDescription|| 'N/A'}
+                                //value={selectedProduct.categoryDescription|| 'N/A'}
                                 disabled
                             />
                         </div>

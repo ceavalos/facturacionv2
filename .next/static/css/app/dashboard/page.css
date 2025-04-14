@@ -179,3 +179,12 @@
   border-radius: 8px 8px 0 0;
   color: #333;
 }
+
+.Modal_headerSection__llLXX {
+  flex: 0 0 35%; /* Takes exactly 35% of the space */
+}
+
+.Modal_detailSection__qAVKq {
+  flex: 1 1; /* Takes the remaining 65% */
+}
+

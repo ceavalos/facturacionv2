@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import Category from './Category';
+import Company from './Company';
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -31,8 +33,9 @@ const productSchema = new mongoose.Schema({
   toJSON: {
     transform: function(doc, ret) {
       // Convertir _id a id
-      ret.id = ret._id;
-      delete ret._id;
+      //ret.id = ret._id;
+      ret._id = ret._id.toString(); // Ensure _id is a string
+      //delete ret._id;
       delete ret.__v;
     }
   }

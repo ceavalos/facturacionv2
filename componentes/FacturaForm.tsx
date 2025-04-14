@@ -13,13 +13,12 @@ import styles from '../styles/Modal.module.css';
 import FacturaHeader from "./FacturaHeader";
 import FacturaDetalle from "./FacturaDetalle";
 import ProductoModal from './ProductoModal';
+import { ProductoDetalle } from '@/app/types/ProductoDetalle';
 
 // Definir los tipos permitidos para los enums
 import { Client } from '@/app/types/interfaces';
 import { tipoClienteOptions as TipoCliente, tipoFacturacionOptions as TipoFacturacion } from '@/app/types/constantes';
 
-// type TipoCliente = 'NATURAL' | 'JURIDICA';
-// type TipoFacturacion = 'CONSUMIDOR_FINAL' | 'CREDITO_FISCAL';
 
 export default function FacturaForm() {
   const [clientes, setClientes] = useState([]);
@@ -33,8 +32,9 @@ export default function FacturaForm() {
   const [searchClient, setSearchClient] = useState('');
   //
   const [modalVisible, setModalVisible] = useState(false);
-  const [detalleProductos, setDetalleProductos] = useState<ProductoDetalle[]>([]);
-
+  const [detalleProductos, setDetalleProductos] = useState<ProductoDetalle[]>([]);  
+  //const [showProductoModal, setShowProductoModal] = useState(false);
+  const [currentProducto, setCurrentProducto] = useState<ProductoDetalle | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -95,7 +95,46 @@ export default function FacturaForm() {
 
 // Añade esta función para manejar el guardado de productos
 const handleSaveProducto = (producto: ProductoDetalle) => {
+  console.log("handleSaveProducto", producto);
   setDetalleProductos([...detalleProductos, producto]);
+};
+
+// Update the handleEditProducto function
+const handleEditProducto = (producto: ProductoDetalle) => {
+  console.log("Editing product:", producto);
+  setCurrentProducto(producto);
+  setModalVisible(true);
+};
+
+// Add a function to handle modal closing
+const handleCloseModal = () => {
+  setModalVisible(false);
+  setCurrentProducto(null);
+};
+
+// Add a function to handle saving edited products
+const handleSaveEditedProducto = (editedProducto: ProductoDetalle) => {
+  if (currentProducto) {
+    // If editing, replace the existing product
+    setDetalleProductos(
+      detalleProductos.map(p => 
+        p._id === currentProducto._id ? editedProducto : p
+      )
+    );
+  } else {
+    // If creating new, add to the list
+    setDetalleProductos([...detalleProductos, editedProducto]);
+  }
+  
+  // Close modal and reset current product
+  setModalVisible(false);
+  setCurrentProducto(null);
+};
+  
+
+const handleDeleteProducto = (id: string) => {
+  // Filter out the deleted product
+  setDetalleProductos(detalleProductos.filter(p => p._id !== id));
 };
 
   // Add this function to handle client selection
@@ -119,13 +158,14 @@ const handleSaveProducto = (producto: ProductoDetalle) => {
   const saveChanges = async (event: React.MouseEvent) => {
     event.preventDefault();
     // Resto de tu código
+    console.log("saveChanges")
   };
 
   return (
     <div className={styles.containerFlex}>
 
       {/* Sección de Encabezado */}
-      <div className={styles.form_section}>
+      <div className={`${styles.form_section} ${styles.headerSection}`}>
         <FacturaHeader
           error={error}
           searchClient={searchClient}
@@ -143,10 +183,13 @@ const handleSaveProducto = (producto: ProductoDetalle) => {
 
       {/* Sección de Detalle */}
 
-      <div className={styles.form_section}>
+      <div className={`${styles.form_section} ${styles.detailSection}`}>
         <h1 className={styles.title}>Detalle de Factura</h1>
         {/* Aquí irá el detalle de la factura */}
-        <FacturaDetalle />
+        <FacturaDetalle productos={detalleProductos} 
+                        onEdit={handleEditProducto} 
+        onDelete={handleDeleteProducto} 
+        />
       </div>
 
       <ProductoModal
@@ -154,6 +197,10 @@ const handleSaveProducto = (producto: ProductoDetalle) => {
         onHide={() => setModalVisible(false)}
         onSave={handleSaveProducto}
         tipoFacturacion={facturaEnc.tipoFacturacion}
+        initialProducto={currentProducto}
+        setCurrentProducto={setCurrentProducto}
+        productos={detalleProductos} 
+        setDetalleProductos={setDetalleProductos}
       />
     </div>
   );
